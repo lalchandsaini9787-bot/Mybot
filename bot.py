@@ -41,5 +41,6 @@ def check(c):
         else:
             bot.answer_callback_query(c.id, "❌ Channel join karo", show_alert=True)
     except Exception as e:
+        bot.answer_callback_query(c.id, "Bot ko dono channel me Admin banao!", show_alert=True)
 
 bot.infinity_polling()
