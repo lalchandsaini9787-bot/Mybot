@@ -7,17 +7,15 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 app = Flask(__name__)
 @app.route('/')
 def home(): return "Bot is Running"
-
 def run_flask():
     app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
-
 threading.Thread(target=run_flask).start()
 
-# Render ke Environment Variable se lega, safe rahega
+# Ye 4 line Render ke Variable se value lenge
 TOKEN = os.environ.get("TOKEN")
-CHANNEL1 = "@darkmrinmoy03"
-CHANNEL2 = "@darkmrinmoy04"  # @ lagana zaruri hai
-YOUR_FILE_LINK = "https://www.mediafire.com/file/9detslhonjp275h/FOX+ONE+V7.apk/file"
+CHANNEL1 = os.environ.get("CHANNEL1")
+CHANNEL2 = os.environ.get("CHANNEL2")
+YOUR_FILE_LINK = os.environ.get("FILE_LINK")
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -38,7 +36,6 @@ def check(c):
         s1 = bot.get_chat_member(CHANNEL1, c.from_user.id).status
         s2 = bot.get_chat_member(CHANNEL2, c.from_user.id).status
         if s1 in ['member','administrator','creator'] and s2 in ['member','administrator','creator']:
-            # Yaha galti thi, ab theek hai
             bot.send_message(c.message.chat.id, f"✅ Thanks for Joining!\n\nFile Here:\n{YOUR_FILE_LINK}")
         else:
             bot.answer_callback_query(c.id, "❌ Channel join karo", show_alert=True)
