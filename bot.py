@@ -1,10 +1,22 @@
+import os
+from flask import Flask
+import threading
+
+app = Flask(__name__)
+@app.route('/')
+def home(): return "Bot is Running"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 10000)))
+
+threading.Thread(target=run_flask).start()
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 TOKEN = "8864657918:AAE9ZVlX02Jj7liN5Tr10BZV86tGXUXNQj4"
-CHANNEL1 = "@TeraChannel1"
-CHANNEL2 = "@TeraChannel2"
-YOUR_FILE_LINK = "Yaha Apni Legit File Ka Link Dale - Drive / Telegram Link"
+CHANNEL1 = "@darkmrinmoy03"
+CHANNEL2 = "darkmrinmoy03"
+YOUR_FILE_LINK = "https://www.mediafire.com/file/9detslhonjp275h/FOX+ONE+V7.apk/file"
 
 bot = telebot.TeleBot(TOKEN)
 
